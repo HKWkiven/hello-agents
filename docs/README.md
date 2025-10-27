@@ -16,7 +16,7 @@
 
 &emsp;&emsp;如果说2024年是"百模大战"的元年，那么2025年无疑开启了"Agent元年"。技术的焦点正从训练更大的基础模型，转向构建更聪明的智能体应用。然而，当前系统性、重实践的教程却极度匮乏。为此，我们发起了 Hello-Agents 项目，希望能为社区提供一本从零开始、理论与实战并重的智能体系统构建指南。
 
-&emsp;&emsp;Hello-Agents 是Datawhale社区的<strong>系统性智能体学习教程</strong>。如今Agent构建主要分为两派，一派是Dify，Coze，N8N这类软件工程类Agent，其本质只是将模型作为返回字符串的后端；另一派则是AI原生的Agent，即真正以AI驱动的Agent。本教程旨在带领大家深入理解并构建后者——真正的AI Native Agent。教程将带领你穿透框架表象，从智能体的核心原理出发，深入其核心架构，理解其经典范式，并最终亲手构建起属于自己的多智能体应用。我们相信，最好的学习方式就是动手实践。希望这本教程能成为你探索智能体世界的起点，能够从一名大语言模型的"使用者"，蜕变为一名智能体系统的"构建者"。
+&emsp;&emsp;Hello-Agents 是Datawhale社区的<strong>系统性智能体学习教程</strong>。如今Agent构建主要分为两派，一派是Dify，Coze，n8n这类软件工程类Agent，其本质是流程驱动的软件开发，LLM作为数据处理的后端；另一派则是AI原生的Agent，即真正以AI驱动的Agent。本教程旨在带领大家深入理解并构建后者——真正的AI Native Agent。教程将带领你穿透框架表象，从智能体的核心原理出发，深入其核心架构，理解其经典范式，并最终亲手构建起属于自己的多智能体应用。我们相信，最好的学习方式就是动手实践。希望这本教程能成为你探索智能体世界的起点，能够从一名大语言模型的"使用者"，蜕变为一名智能体系统的"构建者"。
 
 ## 🌐 在线阅读
 
@@ -57,7 +57,7 @@
 | [第十二章 智能体性能评估](./chapter12/第十二章%20智能体性能评估.md) | 核心指标、基准测试与评估框架 | ✅ |
 | <strong>第四部分：综合案例进阶</strong> |  |  |
 | [第十三章 智能旅行助手](./chapter13/第十三章%20智能旅行助手.md) | MCP与多智能体协作的真实世界应用 | ✅ |
-| [第十四章 自动化深度研究智能体](./chapter14/第十四章%20自动化深度研究智能体.md) | DeepResearch Agent 复现与解析 | 🚧 |
+| [第十四章 自动化深度研究智能体](./chapter14/第十四章%20自动化深度研究智能体.md) | DeepResearch Agent 复现与解析 | ✅ |
 | [第十五章 构建赛博小镇](./chapter15/第十五章%20构建赛博小镇.md) | Agent 与游戏的结合，模拟社会动态 | ✅ |
 | <strong>第五部分：毕业设计及未来展望</strong> |  |  |
 | [第十六章 毕业设计](./chapter17/第十六章%20毕业设计.md) | 构建属于你的完整多智能体应用 | 🚧 |
@@ -115,8 +115,9 @@
 ### 核心贡献者
 - [陈思州-项目负责人](https://github.com/jjyaoao) (Datawhale成员, 全文写作和校对)
 - [孙韬-项目负责人](https://github.com/fengju0213) (Datawhale成员, 第九\十六章内容和全文校对)  
-- [姜舒凡-项目负责人](https://github.com/Tsumugii24)（Datawhale成员, 全文校对）
+- [姜舒凡-项目负责人](https://github.com/Tsumugii24)（Datawhale成员, 章节习题设计和校对）
 - [黄佩林-Datawhale意向成员](https://github.com/HeteroCat) (Agent开发工程师, 第五章内容贡献者)
+- [曾鑫民-agent工程师](https://github.com/fancyboi999) (牛客科技, 第十四章案例开发)
 
 ### Extra-Chapter 贡献者
 - [WH](https://github.com/WHQAQ11) (内容贡献者)
@@ -134,7 +135,7 @@
 ## Star History
 
 <div align='center'>
-    <img src="./images/star-history-20251021.png" alt="Datawhale" width="90%">
+    <img src="./images/star-history-20251024.png" alt="Datawhale" width="90%">
 </div>
 
 <div align="center">
