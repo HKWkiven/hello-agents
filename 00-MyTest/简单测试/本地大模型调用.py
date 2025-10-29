@@ -11,7 +11,7 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 if __name__ == "__main__":
-    cache_dir="D:\\4_MyProject\hello-agents\\00-MyTest\\transformers_cache"
+    cache_dir= "/00-MyTest/transformers_cache"
 
     # 指定模型ID
     model_id = "Qwen/Qwen1.5-0.5B-Chat"
