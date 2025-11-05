@@ -9,9 +9,35 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@latest/lib/themes/vue.css">
+    <style>
+        /* 语言切换按钮样式 */
+        .lang-switch {
+            position: fixed;
+            top: 20px;
+            right: 80px;
+            z-index: 999;
+        }
+        .lang-switch button {
+            background: #42b983;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        .lang-switch button:hover {
+            background: #33a06f;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- 语言切换按钮 -->
+    <div class="lang-switch">
+        <button id="langBtn" onclick="switchLanguage()">English</button>
+    </div>
     <div id="app"></div>
     <script src="//cdn.jsdelivr.net/npm/mermaid@8.0.0-rc.8/dist/mermaid.min.js"></script>
     <script>
@@ -21,9 +47,16 @@
             loadSidebar: true,
             auto2top: true,
             subMaxLevel: 3,
-            relativePath: false,  // 启用相对路径支持
+            relativePath: false,
             alias: {
-                '/.*/_sidebar.md': '/_sidebar.md'
+                // 英文路径映射
+                '/en/README.md': '/README_EN.md',
+                '/en/Preface.md': '/Preface.md',
+                '/en/_sidebar.md': '/_sidebar_en.md',
+                '/en/chapter(\\d+)/Chapter(.*)': '/chapter$1/Chapter$2',
+
+                // 默认中文侧边栏
+                '/_sidebar.md': '/_sidebar.md'
             },
             pagination: {
                 previousText: '上一章节',
@@ -34,7 +67,34 @@
                 fontsize: '0.9em',
                 color: 'rgb(90,90,90)',
                 language: 'chinese'
-            }
+            },
+            // 多语言配置
+            fallbackLanguages: ['en'],
+            nameLink: {
+                '/en/': '#/en/',
+                '/': '#/'
+            },
+            // 使用钩子动态处理侧边栏
+            plugins: [
+                function(hook, vm) {
+                    // 在每次路由变化时检查语言偏好
+                    hook.beforeEach(function(content) {
+                        const preferredLang = localStorage.getItem('preferredLanguage');
+                        const currentPath = vm.route.path;
+
+                        // 根据当前路径或语言偏好更新分页文本
+                        if (currentPath.includes('/en/') || preferredLang === 'en') {
+                            window.$docsify.pagination.previousText = 'Previous';
+                            window.$docsify.pagination.nextText = 'Next';
+                        } else {
+                            window.$docsify.pagination.previousText = '上一章节';
+                            window.$docsify.pagination.nextText = '下一章节';
+                        }
+
+                        return content;
+                    });
+                }
+            ]
         }
     </script>
     <!-- Put them above docsify.min.js -->
@@ -52,6 +112,160 @@
     <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
     <!-- 字数统计 -->
     <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
+
+    <!-- 语言切换脚本 -->
+    <script>
+        // 章节文件名映射
+        const chapterMapping = {
+            // 中文 -> 英文
+            'zh2en': {
+                'README.md': 'README_EN.md',
+                '前言.md': 'Preface.md',
+                '第一章 初识智能体.md': 'Chapter1-Introduction-to-Agents.md',
+                '第二章 智能体发展史.md': 'Chapter2-History-of-Agents.md',
+                '第三章 大语言模型基础.md': 'Chapter3-Fundamentals-of-Large-Language-Models.md',
+                '第四章 智能体经典范式构建.md': 'Chapter4-Building-Classic-Agent-Paradigms.md',
+                '第五章 基于低代码平台的智能体搭建.md': 'Chapter5-Building-Agents-with-Low-Code-Platforms.md',
+                '第六章 框架开发实践.md': 'Chapter6-Framework-Development-Practice.md',
+                '第七章 构建你的Agent框架.md': 'Chapter7-Building-Your-Agent-Framework.md',
+                '第八章 记忆与检索.md': 'Chapter8-Memory-and-Retrieval.md',
+                '第九章 上下文工程.md': 'Chapter9-Context-Engineering.md',
+                '第十章 智能体通信协议.md': 'Chapter10-Agent-Communication-Protocols.md',
+                '第十一章 Agentic-RL.md': 'Chapter11-Agentic-RL.md',
+                '第十二章 智能体性能评估.md': 'Chapter12-Agent-Performance-Evaluation.md',
+                '第十三章 智能旅行助手.md': 'Chapter13-Intelligent-Travel-Assistant.md',
+                '第十四章 自动化深度研究智能体.md': 'Chapter14-Automated-Deep-Research-Agent.md',
+                '第十五章 构建赛博小镇.md': 'Chapter15-Building-Cyber-Town.md',
+                '第十六章 毕业设计.md': 'Chapter16-Graduation-Project.md'
+            },
+            // 英文 -> 中文
+            'en2zh': {
+                'README_EN.md': 'README.md',
+                'Preface.md': '前言.md',
+                'Chapter1-Introduction-to-Agents.md': '第一章 初识智能体.md',
+                'Chapter2-History-of-Agents.md': '第二章 智能体发展史.md',
+                'Chapter3-Fundamentals-of-Large-Language-Models.md': '第三章 大语言模型基础.md',
+                'Chapter4-Building-Classic-Agent-Paradigms.md': '第四章 智能体经典范式构建.md',
+                'Chapter5-Building-Agents-with-Low-Code-Platforms.md': '第五章 基于低代码平台的智能体搭建.md',
+                'Chapter6-Framework-Development-Practice.md': '第六章 框架开发实践.md',
+                'Chapter7-Building-Your-Agent-Framework.md': '第七章 构建你的Agent框架.md',
+                'Chapter8-Memory-and-Retrieval.md': '第八章 记忆与检索.md',
+                'Chapter9-Context-Engineering.md': '第九章 上下文工程.md',
+                'Chapter10-Agent-Communication-Protocols.md': '第十章 智能体通信协议.md',
+                'Chapter11-Agentic-RL.md': '第十一章 Agentic-RL.md',
+                'Chapter12-Agent-Performance-Evaluation.md': '第十二章 智能体性能评估.md',
+                'Chapter13-Intelligent-Travel-Assistant.md': '第十三章 智能旅行助手.md',
+                'Chapter14-Automated-Deep-Research-Agent.md': '第十四章 自动化深度研究智能体.md',
+                'Chapter15-Building-Cyber-Town.md': '第十五章 构建赛博小镇.md',
+                'Chapter16-Graduation-Project.md': '第十六章 毕业设计.md'
+            }
+        };
+
+        function switchLanguage() {
+            const currentHash = window.location.hash;
+            const langBtn = document.getElementById('langBtn');
+
+            // 检测当前语言
+            if (currentHash.includes('/en/')) {
+                // 从英文切换到中文
+                localStorage.setItem('preferredLanguage', 'zh');
+
+                let newHash = currentHash.replace('#/', '').replace('en/', '');
+
+                // 提取文件名
+                const parts = newHash.split('/');
+                const filename = parts[parts.length - 1];
+
+                // 查找对应的中文文件名
+                if (chapterMapping.en2zh[filename]) {
+                    parts[parts.length - 1] = chapterMapping.en2zh[filename];
+                    newHash = '#/' + parts.join('/');
+                } else {
+                    newHash = '#/';
+                }
+
+                window.location.hash = newHash;
+                langBtn.textContent = 'English';
+                window.$docsify.pagination.previousText = '上一章节';
+                window.$docsify.pagination.nextText = '下一章节';
+            } else {
+                // 从中文切换到英文
+                localStorage.setItem('preferredLanguage', 'en');
+
+                let path = currentHash.replace('#/', '');
+
+                if (path === '' || path === '/') {
+                    // 首页
+                    window.location.hash = '#/en/README_EN.md';
+                } else {
+                    // 提取文件名
+                    const parts = path.split('/');
+                    const filename = parts[parts.length - 1];
+
+                    // 查找对应的英文文件名
+                    if (chapterMapping.zh2en[filename]) {
+                        parts[parts.length - 1] = chapterMapping.zh2en[filename];
+                        window.location.hash = '#/en/' + parts.join('/');
+                    } else {
+                        window.location.hash = '#/en/README_EN.md';
+                    }
+                }
+
+                langBtn.textContent = '中文';
+                window.$docsify.pagination.previousText = 'Previous';
+                window.$docsify.pagination.nextText = 'Next';
+            }
+
+            // 重新加载页面以应用新的 sidebar
+            window.location.reload();
+        }
+
+        // 页面加载时设置按钮文本和检查语言偏好
+        window.addEventListener('load', function() {
+            const currentHash = window.location.hash;
+            const langBtn = document.getElementById('langBtn');
+            const preferredLang = localStorage.getItem('preferredLanguage');
+
+            // 只有在用户明确设置了语言偏好后,才自动切换
+            // 首次访问(没有偏好设置)时,默认显示中文版
+            if (preferredLang) {
+                // 如果用户有语言偏好,且当前 URL 不匹配偏好,则自动切换
+                if (preferredLang === 'en' && !currentHash.includes('/en/')) {
+                    // 用户偏好英文,但当前是中文页面
+                    let path = currentHash.replace('#/', '');
+
+                    if (path === '' || path === '/') {
+                        window.location.hash = '#/en/README_EN.md';
+                    } else {
+                        const parts = path.split('/');
+                        const filename = parts[parts.length - 1];
+
+                        if (chapterMapping.zh2en[filename]) {
+                            parts[parts.length - 1] = chapterMapping.zh2en[filename];
+                            window.location.hash = '#/en/' + parts.join('/');
+                        }
+                    }
+                } else if (preferredLang === 'zh' && currentHash.includes('/en/')) {
+                    // 用户偏好中文,但当前是英文页面
+                    let newHash = currentHash.replace('#/', '').replace('en/', '');
+                    const parts = newHash.split('/');
+                    const filename = parts[parts.length - 1];
+
+                    if (chapterMapping.en2zh[filename]) {
+                        parts[parts.length - 1] = chapterMapping.en2zh[filename];
+                        window.location.hash = '#/' + parts.join('/');
+                    }
+                }
+            }
+
+            // 设置按钮文本
+            if (currentHash.includes('/en/')) {
+                langBtn.textContent = '中文';
+            } else {
+                langBtn.textContent = 'English';
+            }
+        });
+    </script>
 </body>
 
 </html>
