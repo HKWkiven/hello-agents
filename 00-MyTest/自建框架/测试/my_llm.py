@@ -10,7 +10,7 @@
 import os
 from typing import Optional
 from openai import OpenAI
-from hello_agents import HelloAgentsLLM, Config
+from hello_agents import HelloAgentsLLM, SimpleAgent
 
 
 class MyLLM(HelloAgentsLLM):

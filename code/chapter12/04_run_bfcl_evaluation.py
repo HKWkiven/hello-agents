@@ -177,7 +177,7 @@ def run_bfcl_official_eval(model_name: str, category: str) -> bool:
         cmd = [
             "bfcl", "evaluate",
             "--model", model_name,
-            "--test-category", category,
+            "--0test-category", category,
             "--partial-eval"
         ]
         

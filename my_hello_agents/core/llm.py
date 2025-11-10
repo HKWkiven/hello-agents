@@ -8,9 +8,14 @@
 """
 
 import os
+from dotenv import load_dotenv
 from typing import Literal, Optional, Iterator
 from openai import OpenAI
+from my_hello_agents.core.exceptions import HelloAgentsException
 
+
+# 加载环境变量
+load_dotenv()
 
 # 支持的LLM提供商
 SUPPORTED_PROVIDERS = Literal[
@@ -72,7 +77,7 @@ class HelloAgentsLLM:
         if not self.model:
             self.model = self._get_default_model()
         if not all([self.api_key, self.base_url]):
-            raise ValueError("XXX") # TODO
+            raise HelloAgentsException("API密钥和服务地址必须被提供或在.env文件中定义。")
 
         # 创建OpenAI客户端
         self._client = self._create_client()
@@ -294,7 +299,7 @@ class HelloAgentsLLM:
                     yield content
 
         except Exception as e:
-            raise ValueError(f"❌ 调用LLM API时发生错误：{str(e)}") # TODO
+            raise HelloAgentsException(f"❌ 调用LLM API时发生错误：{str(e)}")
 
     def invoke(self, messages: list[dict[str, str]], **kwargs) -> str:
         """
@@ -310,8 +315,9 @@ class HelloAgentsLLM:
                 **{k: v for k, v in kwargs.items() if k not in ["temperature", "max_token"]}
             )
             return response.choices[0].message.content
+
         except Exception as e:
-            raise ValueError(f"LLM调用失败")
+            raise HelloAgentsException(f"❌ 调用LLM API时发生错误：{str(e)}")
 
     def stream_invoke(self, messages: list[dict[str, str]], **kwargs) -> Iterator[str]:
         """
@@ -323,4 +329,6 @@ class HelloAgentsLLM:
 
 
 if __name__ == "__main__":
-    pass
+    llm = HelloAgentsLLM()
+    for chunk in llm.stream_invoke([{"role": "user", "content":"介绍一下你自己"}]):
+        print(chunk, end="", flush=True)

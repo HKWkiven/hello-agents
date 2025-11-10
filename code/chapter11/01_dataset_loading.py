@@ -115,7 +115,7 @@ def load_different_splits():
     test_config = {
         "action": "load_dataset",
         "format": "sft",
-        "split": "test",
+        "split": "0test",
         "max_samples": 50
     }
     

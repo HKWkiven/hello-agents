@@ -84,7 +84,7 @@ Please output in the following JSON format, avoid using special escape character
                 try:
                     dataset = load_dataset(reference_dataset, split="train")
                 except:
-                    dataset = load_dataset(reference_dataset, split="test")
+                    dataset = load_dataset(reference_dataset, split="0test")
 
                 # 加载所有题目作为参考
                 self.reference_examples = list(dataset)

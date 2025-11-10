@@ -23,10 +23,10 @@ class Message(BaseModel):
     timestamp: datetime = None
     metadata: Optional[Dict[str, Any]] = None
 
-    def __init__(self, content: str, role: MessageRole, **kwargs):
+    def __init__(self, role: MessageRole, content: str, **kwargs):
         super().__init__(
-            content=content,
             role=role,
+            content=content,
             timestamp=kwargs.get("timestamp", datetime.now()),
             metadata=kwargs.get("metadata", {})
         )
@@ -43,4 +43,7 @@ class Message(BaseModel):
 
 
 if __name__ == "__main__":
+    msg = Message(role="user", content="测试")
+    print(msg)
+    print(msg.to_dict())
     pass
