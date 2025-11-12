@@ -17,8 +17,10 @@ from .core.exceptions import HelloAgentsException
 # Agent实现
 from .agents.simple_agent import SimpleAgent
 from .agents.my_simple_agent import MySimpleAgent
+from .agents.react_agent import ReActAgent
 
 # 工具系统
+from .tools.base import Tool
 from .tools.registry import ToolRegistry
 from .tools.builtin.calculator import CalculatorTool
 

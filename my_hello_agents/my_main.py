@@ -7,7 +7,7 @@
 @说明: 
 """
 
-from hello_agents import ReActAgent
+from hello_agents import PlanAndSolveAgent
 
 from dotenv import load_dotenv
 from my_hello_agents import MySimpleAgent, CalculatorTool, HelloAgentsLLM, ToolRegistry

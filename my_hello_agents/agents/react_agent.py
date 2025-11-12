@@ -9,8 +9,6 @@
 
 import re
 from typing import Optional, List, Tuple
-
-from code.chapter3.Qwen import messages
 from my_hello_agents import Agent, HelloAgentsLLM, Config, Message, ToolRegistry
 
 # 默认ReAct提示词模板
@@ -159,19 +157,31 @@ class ReActAgent(Agent):
         final_answer = "抱歉，我无法在限定步数内完成这个任务。"
 
         # 保存到历史记录
-        self.add_message(Message(input_text, "user"))
-        self.add_message(Message(final_answer, "assistant"))
+        self.add_message(Message("user", input_text))
+        self.add_message(Message("assistant", final_answer))
 
         return final_answer
 
-    def _parse_output(self, response_text) -> Tuple[Optional[str], Optional[str]]:
-        pass
+    def _parse_output(self, text: str) -> Tuple[Optional[str], Optional[str]]:
+        """解析LLM输出，提取思考和行动"""
+        thought_match = re.search(r"Thought: (.*)", text)
+        action_match = re.search(r"Action: (.*)", text)
+        thought = thought_match.group(1).strip() if thought_match else None
+        action = action_match.group(1).strip() if action_match else None
 
-    def _parse_action_input(self, action) -> str:
-        pass
+        return thought, action
+
+    def _parse_action_input(self, action_text: str) -> str:
+        """解析行动输入"""
+        match = re.match(r"\w+\[(.*)]", action_text)
+        return match.group(1) if match else ""
 
     def _parse_action(self, action_text: str) -> Tuple[Optional[str], Optional[str]]:
-        pass
+        """解析行动文本，提取工具名称和输入"""
+        match = re.match(r"(\w+)\[(.*)]", action_text)
+        if match:
+            return match.group(1), match.group(2)
+        return None, None
 
 
 if __name__ == "__main__":

@@ -8,8 +8,7 @@
 """
 
 from typing import Optional, Any, Callable
-from my_hello_agents.core.exceptions import HelloAgentsException
-from my_hello_agents.tools.base import Tool
+from my_hello_agents import Tool, HelloAgentsException
 
 
 class ToolRegistry:
