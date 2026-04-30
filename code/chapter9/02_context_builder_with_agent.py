@@ -6,7 +6,8 @@ ContextBuilder 与 Agent 集成示例
 2. 自动构建优化的上下文
 3. 记忆管理与上下文构建的协同
 """
-
+from dotenv import load_dotenv
+load_dotenv()
 from hello_agents import SimpleAgent, HelloAgentsLLM, ToolRegistry
 from hello_agents.context import ContextBuilder, ContextConfig
 from hello_agents.tools import MemoryTool, RAGTool
@@ -60,12 +61,12 @@ class ContextAwareAgent(SimpleAgent):
         )
 
         # 4. 将重要交互记录到记忆系统
-        # self.memory_tool.execute(
-        #     "add",
-        #     content=f"Q: {user_input}\nA: {response[:200]}...",  # 摘要
-        #     memory_type="episodic",
-        #     importance=0.6
-        # )
+        # self.memory_tool.run({
+        #     "action": "add",
+        #     "content": f"Q: {user_input}\nA: {response[:200]}...",  # 摘要
+        #     "memory_type": "episodic",
+        #     "importance": 0.6
+        # })
 
         return response
 
@@ -77,12 +78,7 @@ def main():
 
     # 配置 LLM
     from hello_agents.core.llm import HelloAgentsLLM
-    llm = HelloAgentsLLM(
-        model="ZhipuAI/GLM-4.6",
-        api_key="6ff5219e-410a-4293-8772-0c948bfa691c",
-        base_url="https://api-inference.modelscope.cn/v1/",
-        provider="modelscope"
-    )
+    llm = HelloAgentsLLM()
 
     # 使用示例
     agent = ContextAwareAgent(

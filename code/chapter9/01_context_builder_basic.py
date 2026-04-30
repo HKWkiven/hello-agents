@@ -7,7 +7,8 @@ ContextBuilder 基础使用示例
 3. 添加记忆
 4. 构建结构化上下文
 """
-
+from dotenv import load_dotenv
+load_dotenv()
 from hello_agents.context import ContextBuilder, ContextConfig
 from hello_agents.tools import MemoryTool, RAGTool
 from hello_agents.core.message import Message
@@ -50,19 +51,19 @@ def main():
 
     # 4. 添加一些记忆
     print("4. 添加记忆...")
-    # memory_tool.execute(
-    #     "add",
-    #     content="用户正在开发数据分析工具,使用Python和Pandas",
-    #     memory_type="semantic",
-    #     importance=0.8
-    # )
+    # memory_tool.run({
+    #     "action": "add",
+    #     "content": "用户正在开发数据分析工具,使用Python和Pandas",
+    #     "memory_type": "semantic",
+    #     "importance": 0.8
+    # })
 
-    # memory_tool.execute(
-    #     "add",
-    #     content="已完成CSV读取模块的开发",
-    #     memory_type="episodic",
-    #     importance=0.7
-    # )
+    # memory_tool.run({
+    #     "action": "add",
+    #     "content": "已完成CSV读取模块的开发",
+    #     "memory_type": "episodic",
+    #     "importance": 0.7
+    # })
 
     # 5. 构建上下文
     print("5. 构建上下文...\n")
@@ -88,12 +89,7 @@ def main():
     ]
 
     from hello_agents.core.llm import HelloAgentsLLM
-    llm = HelloAgentsLLM(
-        model="ZhipuAI/GLM-4.6",
-        api_key="6ff5219e-410a-4293-8772-0c948bfa691c",
-        base_url="https://api-inference.modelscope.cn/v1/",
-        provider="modelscope"
-    )
+    llm = HelloAgentsLLM()
     # 注意: 实际使用时需要配置 LLM
     response = llm.invoke(messages)
     print(f"LLM 回答: {response}")

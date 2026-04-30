@@ -96,6 +96,7 @@ Before starting to write specific code, we need to first establish a clear archi
 To allow readers to quickly experience the complete functionality of this chapter, we provide a directly installable Python package. You can install the version corresponding to this chapter with the following command:
 
 ```bash
+# hello-agents framework code visible link: https://github.com/jjyaoao/HelloAgents
 # Python version needs to be >= 3.10
 pip install "hello-agents==0.1.1"
 ```
@@ -259,8 +260,9 @@ response_stream = llm.think(messages)
 # Print response
 print("ModelScope Response:")
 for chunk in response_stream:
-    # chunk is already a text fragment, can be used directly
-    print(chunk, end="", flush=True)
+    # Chunk already printed in my_llm, just pass here
+    # print(chunk, end="", flush=True)
+    pass
 ```
 
 Through the above steps, we have successfully extended new functionality to the `hello-agents` library without modifying its source code. This method not only ensures code cleanliness and maintainability but also ensures that our customized functionality will not be lost when upgrading the `hello-agents` library in the future.
@@ -458,9 +460,9 @@ As shown in Table 7.1 above, this evolution embodies an important principle of f
 
 In the previous section, we built `HelloAgentsLLM`, a core component that solves the key problem of communicating with large language models. However, it still needs a series of supporting interfaces and components to handle data flow, manage configuration, handle exceptions, and provide a clear, unified structure for upper-layer application construction. This section will cover the following three core files:
 
-- **`message.py`**: Defines the unified message format within the framework, ensuring standardization of information transfer between agents and models.
-- **`config.py`**: Provides a centralized configuration management solution, making framework behavior easy to adjust and extend.
-- **`agent.py`**: Defines the abstract base class (`Agent`) for all agents, providing a unified interface and specification for implementing different types of agents in the future.
+- `message.py`: Defines the unified message format within the framework, ensuring standardization of information transfer between agents and models.
+- `config.py`: Provides a centralized configuration management solution, making framework behavior easy to adjust and extend.
+- `agent.py`: Defines the abstract base class (`Agent`) for all agents, providing a unified interface and specification for implementing different types of agents in the future.
 
 ### 7.3.1 Message Class
 
@@ -610,7 +612,7 @@ The content of this section will perform framework refactoring based on the thre
 
 ### 7.4.1 SimpleAgent
 
-SimpleAgent is the most basic Agent implementation, demonstrating how to build a complete conversational agent on the framework foundation. We will rewrite SimpleAgent by inheriting the framework base class. First, create a `my_simple_agent.py` file in your project directory:
+SimpleAgent is the most basic Agent implementation, demonstrating how to build a complete conversational agent on the framework foundation. We will extend the existing `SimpleAgent` class and override its core methods to build a more extensible version. First, create a `my_simple_agent.py` file in your project directory:
 
 ```python
 # my_simple_agent.py
@@ -620,7 +622,7 @@ from hello_agents import SimpleAgent, HelloAgentsLLM, Config, Message
 class MySimpleAgent(SimpleAgent):
     """
     Rewritten simple conversation Agent
-    Demonstrates how to build custom Agent based on framework base class
+    Demonstrates how to build a custom Agent by extending SimpleAgent
     """
 
     def __init__(
@@ -638,7 +640,7 @@ class MySimpleAgent(SimpleAgent):
         print(f"✅ {name} initialization complete, tool calling: {'enabled' if self.enable_tool_calling else 'disabled'}")
 ```
 
-Next, we need to override the abstract method `run` of the Agent base class. SimpleAgent supports optional tool calling functionality, which also facilitates expansion in subsequent chapters:
+Next, we need to override the `run` method. SimpleAgent supports optional tool calling functionality, which also facilitates expansion in subsequent chapters:
 
 ```python
 # Continue adding in my_simple_agent.py
@@ -1068,7 +1070,8 @@ def run(self, input_text: str, **kwargs) -> str:
         # 4. Check completion condition
         if action and action.startswith("Finish"):
             final_answer = self._parse_action_input(action)
-            self._save_to_history(input_text, final_answer)
+            self.add_message(Message(input_text, "user"))
+            self.add_message(Message(final_answer, "assistant"))
             return final_answer
 
         # 5. Execute tool call
@@ -1080,7 +1083,8 @@ def run(self, input_text: str, **kwargs) -> str:
 
     # Reached maximum steps
     final_answer = "Sorry, I cannot complete this task within the limited number of steps."
-    self._save_to_history(input_text, final_answer)
+    self.add_message(Message(input_text, "user"))
+    self.add_message(Message(final_answer, "assistant"))
     return final_answer
 ```
 
@@ -1275,6 +1279,74 @@ As shown in Table 7.2, through this framework refactoring, we not only maintaine
   <p>Table 7.2 Comparison of Agent Implementations Across Chapters</p>
   <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/7-figures/table-02.png" alt="" width="90%"/>
 </div>
+
+### 7.4.5 FunctionCallAgent
+
+FunctionCallAgent is an Agent introduced in hello-agents after version 0.2.8, based on OpenAI's native function calling mechanism. It demonstrates how to build an Agent using OpenAI's function calling capabilities.
+It supports the following features:
+
+- _build_tool_schemas: Constructs OpenAI function calling schema through tool descriptions
+- _extract_message_content: Extracts text content from OpenAI responses
+- _parse_function_call_arguments: Parses JSON string parameters returned by the model
+- _convert_parameter_types: Converts parameter types
+
+These features enable native OpenAI Function Calling capabilities, providing stronger robustness compared to prompt-constrained approaches.
+
+```python
+def _invoke_with_tools(self, messages: list[dict[str, Any]], tools: list[dict[str, Any]], tool_choice: Union[str, dict], **kwargs):
+        """Invoke underlying OpenAI client to execute function calls"""
+        client = getattr(self.llm, "_client", None)
+        if client is None:
+            raise RuntimeError("HelloAgentsLLM client not properly initialized, cannot execute function calls.")
+
+        client_kwargs = dict(kwargs)
+        client_kwargs.setdefault("temperature", self.llm.temperature)
+        if self.llm.max_tokens is not None:
+            client_kwargs.setdefault("max_tokens", self.llm.max_tokens)
+
+        return client.chat.completions.create(
+            model=self.llm.model,
+            messages=messages,
+            tools=tools,
+            tool_choice=tool_choice,
+            **client_kwargs,
+        )
+
+# Internal logic wraps OpenAI native function calling
+# OpenAI native function calling example
+from openai import OpenAI
+client = OpenAI()
+
+tools = [
+  {
+    "type": "function",
+    "function": {
+      "name": "get_current_weather",
+      "description": "Get the current weather in a given location",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "description": "The city and state, e.g. San Francisco, CA",
+          },
+          "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]},
+        },
+        "required": ["location"],
+      },
+    }
+  }
+]
+messages = [{"role": "user", "content": "What's the weather like in Boston today?"}]
+completion = client.chat.completions.create(
+  model="gpt-5",
+  messages=messages,
+  tools=tools,
+  tool_choice="auto"
+)
+
+print(completion)
+```
 
 ## 7.5 Tool System
 

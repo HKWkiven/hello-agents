@@ -17,7 +17,7 @@
 - **过度抽象的复杂性**：许多框架为了追求通用性，引入了大量抽象层和配置选项。以LangChain为例，其链式调用机制虽然灵活，但对初学者而言学习曲线陡峭，往往需要理解大量概念才能完成简单任务。
 - **快速迭代带来的不稳定性**：商业化框架为了抢占市场，API接口变更频繁。开发者经常面临版本升级后代码无法运行的困扰，维护成本居高不下。
 - **黑盒化的实现逻辑**：许多框架将核心逻辑封装得过于严密，开发者难以理解Agent的内部工作机制，缺乏深度定制能力。遇到问题时只能依赖文档和社区支持，尤其是如果社区不够活跃，可能一个反馈意见会非常久也没有人推进，影响后续的开发效率。
-- **依赖关系的复杂性**：成熟框架往往携带大量依赖包，安装包体积庞大，在需要与别的项目代码配合的下可能出现依赖冲突问题。
+- **依赖关系的复杂性**：成熟框架往往携带大量依赖包，安装包体积庞大，在需要与别的项目代码配合使用可能出现依赖冲突问题。
 
 （2）从使用者到构建者的能力跃迁
 
@@ -96,7 +96,8 @@ hello-agents/
 为了让读者能够快速体验本章的完整功能，我们提供了可直接安装的Python包。你可以通过以下命令安装本章对应的版本：
 
 ```bash
-# python版本需要>=3.10
+# hello-agents 框架代码可见链接：https://github.com/jjyaoao/HelloAgents
+# Python 版本需要>=3.10
 pip install "hello-agents==0.1.1"
 ```
 
@@ -259,8 +260,9 @@ response_stream = llm.think(messages)
 # 打印响应
 print("ModelScope Response:")
 for chunk in response_stream:
-    # chunk 已经是文本片段，可以直接使用
-    print(chunk, end="", flush=True)
+    # chunk在my_llm库中已经打印过一遍，这里只需要pass即可
+    # print(chunk, end="", flush=True)
+    pass
 ```
 
 通过以上步骤，我们就在不修改 `hello-agents` 库源码的前提下，成功为其扩展了新的功能。这种方法不仅保证了代码的整洁和可维护性，也使得未来升级 `hello-agents` 库时，我们的定制化功能不会丢失。
@@ -458,9 +460,9 @@ for chunk in llm.think(messages):
 
 在上节中，我们构建了 `HelloAgentsLLM` 这一核心组件，解决了与大语言模型通信的关键问题。不过它还需要一系列配套的接口和组件来处理数据流、管理配置、应对异常，并为上层应用的构建提供一个清晰、统一的结构。本节将讲述以下三个核心文件：
 
-- **`message.py`**： 定义了框架内统一的消息格式，确保了智能体与模型之间信息传递的标准化。
-- **`config.py`**： 提供了一个中心化的配置管理方案，使框架的行为易于调整和扩展。
-- **`agent.py`**： 定义了所有智能体的抽象基类（`Agent`），为后续实现不同类型的智能体提供了统一的接口和规范。
+- `message.py`： 定义了框架内统一的消息格式，确保了智能体与模型之间信息传递的标准化。
+- `config.py`： 提供了一个中心化的配置管理方案，使框架的行为易于调整和扩展。
+- `agent.py`： 定义了所有智能体的抽象基类（`Agent`），为后续实现不同类型的智能体提供了统一的接口和规范。
 
 ### 7.3.1 Message 类
 
@@ -610,7 +612,7 @@ class Agent(ABC):
 
 ### 7.4.1 SimpleAgent
 
-SimpleAgent是最基础的Agent实现，它展示了如何在框架基础上构建一个完整的对话智能体。我们将通过继承框架基类来重写SimpleAgent。首先，在你的项目目录中创建一个`my_simple_agent.py`文件：
+SimpleAgent是最基础的Agent实现，它展示了如何在框架基础上构建一个完整的对话智能体。我们将通过继承框架中已有的`SimpleAgent`类并重写其核心方法，来实现一个可扩展的版本。首先，在你的项目目录中创建一个`my_simple_agent.py`文件：
 
 ```python
 # my_simple_agent.py
@@ -638,7 +640,7 @@ class MySimpleAgent(SimpleAgent):
         print(f"✅ {name} 初始化完成，工具调用: {'启用' if self.enable_tool_calling else '禁用'}")
 ```
 
-接下来，我们需要重写Agent基类的抽象方法`run`。SimpleAgent支持可选的工具调用功能，也方便后续章节的扩展：
+接下来，我们需要重写`run`方法。SimpleAgent支持可选的工具调用功能，也方便后续章节的扩展：
 
 ```python
 # 继续在 my_simple_agent.py 中添加
@@ -1068,7 +1070,8 @@ def run(self, input_text: str, **kwargs) -> str:
         # 4. 检查完成条件
         if action and action.startswith("Finish"):
             final_answer = self._parse_action_input(action)
-            self._save_to_history(input_text, final_answer)
+            self.add_message(Message(input_text, "user"))
+            self.add_message(Message(final_answer, "assistant"))
             return final_answer
 
         # 5. 执行工具调用
@@ -1080,7 +1083,8 @@ def run(self, input_text: str, **kwargs) -> str:
 
     # 达到最大步数
     final_answer = "抱歉，我无法在限定步数内完成这个任务。"
-    self._save_to_history(input_text, final_answer)
+    self.add_message(Message(input_text, "user"))
+    self.add_message(Message(final_answer, "assistant"))
     return final_answer
 ```
 
@@ -1280,12 +1284,13 @@ print(f"数学专用Agent结果: {math_result}")
 
 FunctionCallAgent是hello-agents在0.2.8之后引入的Agent，它基于OpenAI原生函数调用机制的Agent，展示了如何使用OpenAI的函数调用机制来构建Agent。
 它支持以下功能：
-_build_tool_schemas:通过工具的description构建OpenAI的function calling schema
-_extract_message_content:从OpenAI的响应中提取文本
-_parse_function_call_arguments:解析模型返回的JSON字符串参数
-_convert_parameter_types:转换参数类型
 
-这些功能可以使其具备原生的OpenAI Functioncall的能力，对比使用prompt约束的方式，具备更强的鲁棒性。
+- _build_tool_schemas:通过工具的description构建OpenAI的function calling schema
+- _extract_message_content:从OpenAI的响应中提取文本
+- _parse_function_call_arguments:解析模型返回的JSON字符串参数
+- _convert_parameter_types:转换参数类型
+
+这些功能可以使其具备原生的OpenAI Function Calling的能力，对比使用prompt约束的方式，具备更强的鲁棒性。
 ```python
 def _invoke_with_tools(self, messages: list[dict[str, Any]], tools: list[dict[str, Any]], tool_choice: Union[str, dict], **kwargs):
         """调用底层OpenAI客户端执行函数调用"""

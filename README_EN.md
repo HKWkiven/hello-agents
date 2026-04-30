@@ -6,6 +6,11 @@
   <img src="./docs/images/hello-agents.png" alt="alt text" width="100%">
   <h1>Hello-Agents</h1>
   <h3>🤖 "Building Agent Systems from Scratch"</h3>
+  <div align="center">
+  <a href="https://trendshift.io/repositories/15520" target="_blank">
+    <img src="https://trendshift.io/api/badge/repositories/15520" alt="datawhalechina%2Fhello-agents | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/>
+  </a>
+  </div>
   <p><em>From foundational theory to practical applications, master the design and implementation of agent systems</em></p>
   <img src="https://img.shields.io/github/stars/datawhalechina/Hello-Agents?style=flat&logo=github" alt="GitHub stars"/>
   <img src="https://img.shields.io/github/forks/datawhalechina/Hello-Agents?style=flat&logo=github" alt="GitHub forks"/>
@@ -25,9 +30,7 @@
 ## 📚 Quick Start
 
 ### Online Reading
-**[🌐 Click here to start reading online](https://datawhalechina.github.io/hello-agents/)** - No download required, learn anytime, anywhere
-
-**[📖 Cookbook (Beta)](https://book.heterocat.com.cn/)**
+**[🌐 International Access](https://datawhalechina.github.io/hello-agents/)** | **[🚀 Domestic Acceleration](https://hello-agents.datawhale.cc)** - No download required, learn anytime, anywhere
 
 ### Local Reading
 If you wish to read locally or contribute content, please refer to the learning guide below.
@@ -45,47 +48,54 @@ If you wish to read locally or contribute content, please refer to the learning 
 
 ## 📖 Content Navigation
 
-| Chapter | Key Content | Status |
-| --- | --- | --- |
-| [Preface](./docs/Preface.md) | Project origin, background, and reader suggestions | ✅ |
-| **Part 1: Agent and Language Model Fundamentals** |  |  |
-| [Chapter 1: Introduction to Agents](./docs/chapter1/Chapter1-Introduction-to-Agents.md) | Agent definition, types, paradigms, and applications | ✅ |
-| [Chapter 2: History of Agents](./docs/chapter2/Chapter2-History-of-Agents.md) | Evolution from symbolism to LLM-driven agents | ✅ |
-| [Chapter 3: Large Language Model Fundamentals](./docs/chapter3/Chapter3-Fundamentals-of-Large-Language-Models.md) | Transformer, prompts, mainstream LLMs and their limitations | ✅ |
-| **Part 2: Building Your LLM Agent** |  |  |
-| [Chapter 4: Classic Agent Paradigm Construction](./docs/chapter4/Chapter4-Building-Classic-Agent-Paradigms.md) | Hands-on implementation of ReAct, Plan-and-Solve, Reflection | ✅ |
-| [Chapter 5: Low-Code Platform Agent Development](./docs/chapter5/Chapter5-Building-Agents-with-Low-Code-Platforms.md) | Understanding Coze, Dify, n8n and other low-code agent platforms | ✅ |
-| [Chapter 6: Framework Development Practice](./docs/chapter6/Chapter6-Framework-Development-Practice.md) | AutoGen, AgentScope, LangGraph and other mainstream framework applications | ✅ |
-| [Chapter 7: Building Your Agent Framework](./docs/chapter7/Chapter7-Building-Your-Agent-Framework.md) | Building an agent framework from scratch | ✅ |
-| **Part 3: Advanced Knowledge Extension** |  |  |
-| [Chapter 8: Memory and Retrieval](./docs/chapter8/Chapter8-Memory-and-Retrieval.md) | Memory systems, RAG, storage | ✅ |
-| [Chapter 9: Context Engineering](./docs/chapter9/Chapter9-Context-Engineering.md) | "Contextual understanding" for continuous interaction | ✅ |
-| [Chapter 10: Agent Communication Protocols](./docs/chapter10/Chapter10-Agent-Communication-Protocols.md) | MCP, A2A, ANP and other protocol analysis | ✅ |
-| [Chapter 11: Agentic-RL](./docs/chapter11/Chapter11-Agentic-RL.md) | Practical LLM training from SFT to GRPO | ✅ |
-| [Chapter 12: Agent Performance Evaluation](./docs/chapter12/Chapter12-Agent-Performance-Evaluation.md) | Core metrics, benchmarks, and evaluation frameworks | ✅ |
-| **Part 4: Comprehensive Case Studies** |  |  |
-| [Chapter 13: Intelligent Travel Assistant](./docs/chapter13/Chapter13-Intelligent-Travel-Assistant.md) | Real-world applications of MCP and multi-agent collaboration | ✅ |
-| [Chapter 14: Automated Deep Research Agent](./docs/chapter14/Chapter14-Automated-Deep-Research-Agent.md) | DeepResearch Agent reproduction and analysis | ✅ |
-| [Chapter 15: Building a Cyber Town](./docs/chapter15/Chapter15-Building-Cyber-Town.md) | Combining agents with games, simulating social dynamics | ✅ |
-| **Part 5: Capstone Project and Future Outlook** |  |  |
-| [Chapter 16: Capstone Project](./docs/chapter16/Chapter16-Graduation-Project.md) | Build your own complete multi-agent application | ✅ |
+| Chapter                                                                                                               | Key Content                                                                | Status |
+| --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------ |
+| [Preface](./docs/Preface.md)                                                                                          | Project origin, background, and reader suggestions                         | ✅      |
+| **Part 1: Agent and Language Model Fundamentals**                                                                     |                                                                            |        |
+| [Chapter 1: Introduction to Agents](./docs/chapter1/Chapter1-Introduction-to-Agents.md)                               | Agent definition, types, paradigms, and applications                       | ✅      |
+| [Chapter 2: History of Agents](./docs/chapter2/Chapter2-History-of-Agents.md)                                         | Evolution from symbolism to LLM-driven agents                              | ✅      |
+| [Chapter 3: Large Language Model Fundamentals](./docs/chapter3/Chapter3-Fundamentals-of-Large-Language-Models.md)     | Transformer, prompts, mainstream LLMs and their limitations                | ✅      |
+| **Part 2: Building Your LLM Agent**                                                                                   |                                                                            |        |
+| [Chapter 4: Classic Agent Paradigm Construction](./docs/chapter4/Chapter4-Building-Classic-Agent-Paradigms.md)        | Hands-on implementation of ReAct, Plan-and-Solve, Reflection               | ✅      |
+| [Chapter 5: Low-Code Platform Agent Development](./docs/chapter5/Chapter5-Building-Agents-with-Low-Code-Platforms.md) | Understanding Coze, Dify, n8n and other low-code agent platforms           | ✅      |
+| [Chapter 6: Framework Development Practice](./docs/chapter6/Chapter6-Framework-Development-Practice.md)               | AutoGen, AgentScope, LangGraph and other mainstream framework applications | ✅      |
+| [Chapter 7: Building Your Agent Framework](./docs/chapter7/Chapter7-Building-Your-Agent-Framework.md)                 | Building an agent framework from scratch                                   | ✅      |
+| **Part 3: Advanced Knowledge Extension**                                                                              |                                                                            |        |
+| [Chapter 8: Memory and Retrieval](./docs/chapter8/Chapter8-Memory-and-Retrieval.md)                                   | Memory systems, RAG, storage                                               | ✅      |
+| [Chapter 9: Context Engineering](./docs/chapter9/Chapter9-Context-Engineering.md)                                     | "Contextual understanding" for continuous interaction                      | ✅      |
+| [Chapter 10: Agent Communication Protocols](./docs/chapter10/Chapter10-Agent-Communication-Protocols.md)              | MCP, A2A, ANP and other protocol analysis                                  | ✅      |
+| [Chapter 11: Agentic-RL](./docs/chapter11/Chapter11-Agentic-RL.md)                                                    | Practical LLM training from SFT to GRPO                                    | ✅      |
+| [Chapter 12: Agent Performance Evaluation](./docs/chapter12/Chapter12-Agent-Performance-Evaluation.md)                | Core metrics, benchmarks, and evaluation frameworks                        | ✅      |
+| **Part 4: Comprehensive Case Studies**                                                                                |                                                                            |        |
+| [Chapter 13: Intelligent Travel Assistant](./docs/chapter13/Chapter13-Intelligent-Travel-Assistant.md)                | Real-world applications of MCP and multi-agent collaboration               | ✅      |
+| [Chapter 14: Automated Deep Research Agent](./docs/chapter14/Chapter14-Automated-Deep-Research-Agent.md)              | DeepResearch Agent reproduction and analysis                               | ✅      |
+| [Chapter 15: Building a Cyber Town](./docs/chapter15/Chapter15-Building-Cyber-Town.md)                                | Combining agents with games, simulating social dynamics                    | ✅      |
+| **Part 5: Capstone Project and Future Outlook**                                                                       |                                                                            |        |
+| [Chapter 16: Capstone Project](./docs/chapter16/Chapter16-Graduation-Project.md)                                      | Build your own complete multi-agent application                            | ✅      |
 
 ### Community Contributions
 
 &emsp;&emsp;We welcome everyone to contribute their unique insights and practical summaries from learning Hello-Agents or Agent-related technologies to the community selection in the form of PRs. If the content is independent of the main text, you can also submit it to Extra-Chapter! **Looking forward to your first contribution!**
 
-| Community Selection | Content Summary |
-| --- | --- |
-| [01-Agent Interview Questions Summary](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra01-面试问题总结.md) | Agent position-related interview questions |
-| [01-Agent Interview Answers](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra01-参考答案.md) | Answers to related interview questions |
-| [02-Context Engineering Content Supplement](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra02-上下文工程补充知识.md) | Context engineering content extension |
-| [03-Dify Agent Creation Step-by-Step Tutorial](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra03-Dify智能体创建保姆级操作流程.md) | Dify Agent Creation Step-by-Step Tutorial |
+| Community Selection                                                                                                                                            | Content Summary                            |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| [00-Co-creation Capstone Projects](https://github.com/datawhalechina/hello-agents/blob/main/Co-creation-projects)                                             | Community co-creation capstone projects    |
+| [01-Agent Interview Questions Summary](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra01-面试问题总结.md)                         | Agent position-related interview questions |
+| [01-Agent Interview Answers](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra01-参考答案.md)                                       | Answers to related interview questions     |
+| [02-Context Engineering Content Supplement](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra02-上下文工程补充知识.md)              | Context engineering content extension      |
+| [03-Dify Agent Creation Step-by-Step Tutorial](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra03-Dify智能体创建保姆级操作流程.md) | Dify Agent Creation Step-by-Step Tutorial  |
+| [04-Hello-agents Course Common Questions](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra04-DatawhaleFAQ.md)                      | Datawhale Course Common Questions          |
+| [05-Agent Skills vs MCP Comparison](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra05-AgentSkills解读.md)                         | Agent Skills vs MCP Technical Comparison   |
+| [06-GUI Agent Overview and Hands-on Practice](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra06-GUIAgent科普与实战.md)            | GUI Agent concepts and practical tutorials |
+| [07-Environment Configuration](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra07-环境配置.md)            | Environment Configuration |
+| [08-How to Write Good Skills](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra08-如何写出好的Skill.md) | Skill writing best practices |
+| [09-Agent Development Pitfalls and Practical Lessons](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra09-Agent应用开发实践踩坑与经验分享.md) | Practical lessons and pitfalls from building a Code Agent |
 
 ### PDF Version Download
 
 &emsp;&emsp;*<strong>This Hello-Agents PDF tutorial is completely open source and free. To prevent various marketing accounts from adding watermarks and selling it to multi-agent system beginners, we have pre-added a Datawhale open source logo watermark that does not affect reading in the PDF file. Please understand~</strong>*
 
-> *Hello-Agents PDF: https://github.com/datawhalechina/hello-agents/releases/tag/V1.0.0*  
+> *Hello-Agents PDF: https://github.com/datawhalechina/hello-agents/releases/latest/*  
 > *Hello-Agents PDF Domestic Download: https://www.datawhale.cn/learn/summary/239* 
 
 ## 💡 How to Learn
@@ -123,8 +133,8 @@ We are an open-source community and welcome any form of contribution!
 
 ### Core Contributors
 - [Chen Sizhou - Project Lead](https://github.com/jjyaoao) (Datawhale member, full text writing and proofreading)
-- [Sun Tao - Project Lead](https://github.com/fengju0213) (Datawhale member, Chapter 9 content and proofreading)
-- [Jiang Shufan - Project Lead](https://github.com/Tsumugii24) (Datawhale member, chapter exercise design and proofreading)
+- [Sun Tao - Co-sponsor](https://github.com/fengju0213) (Datawhale member, CAMEL-AI, Chapter 9 content and proofreading)
+- [Jiang Shufan - Co-sponsor](https://github.com/Tsumugii24) (Datawhale member, chapter exercise design and proofreading)
 - [Huang Peilin - Datawhale Prospective Member](https://github.com/HeteroCat) (Agent Development Engineer, Chapter 5 content contributor)
 - [Zeng Xinmin - Agent Engineer](https://github.com/fancyboi999) (Niuke Technology, Chapter 14 case development)
 - [Zhu Xinzhong - Advisory Expert](https://xinzhongzhu.github.io/) (Chief Scientist of Datawhale, Professor at Hangzhou Institute of Artificial Intelligence, Zhejiang Normal University)
@@ -133,6 +143,9 @@ We are an open-source community and welcome any form of contribution!
 - [WH](https://github.com/WHQAQ11) (Content contributor)
 - [Zhou Aojie - DW Contributor Team](https://github.com/thunderbolt-fire) (Xi'an Jiaotong University, Extra02 content contribution)
 - [Zhang Chenxu - Individual Developer](https://github.com/Tasselszcx) (Imperial College London, Extra03 Content Contributor)
+- [Huang Honghan - DW Contributor Team](https://github.com/XiaoMa-PM) (Shenzhen University, Extra04 Content Contributor)
+- [Wang Dapeng - Datawhale Member](https://github.com/ditingdapeng) (Senior Developer, Extra08 Content Contributor)
+- [You Yihui - Individual Developer](https://github.com/YYHDBL) (Nanjing University of Information Science and Technology, Extra09 content contribution)
 
 ### Special Thanks
 - Thanks to [@Sm1les](https://github.com/Sm1les) for help and support for this project
@@ -147,11 +160,18 @@ We are an open-source community and welcome any form of contribution!
 ## Star History
 
 <div align='center'>
-    <img src="./docs/images/star-history-20251112.png" alt="Datawhale" width="90%">
+    <img src="./docs/images/star-history-2026424.png" alt="Datawhale" width="90%">
 </div>
 
 <div align="center">
   <p>⭐ If this project helps you, please give us a Star!</p>
+</div>
+
+## Reader Community Group
+
+<div align='center'>
+	<img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/读者群二维码.png" alt="阅读群额码" width="30%">
+	<p>Scan the QR code to join the reader community group and discuss with more learners</p>
 </div>
 
 ## About Datawhale
@@ -160,6 +180,20 @@ We are an open-source community and welcome any form of contribution!
     <img src="./docs/images/datawhale.png" alt="Datawhale" width="30%">
     <p>Scan the QR code to follow the Datawhale official account and get more high-quality open source content</p>
 </div>
+
+## 🎓 Citation
+
+If Hello-Agents is helpful to your research or work, please cite:
+
+```bibtex
+@misc{hello_agents2025,
+  title  = {Hello-Agents: Building an Agent from Scratch},
+  author = {Sizhou Chen and Tao Sun and Shufan Jiang and Peilin Huang and Xinmin Zeng and Xinzhong Zhu and all Hello-Agents contributors},
+  year   = {2025},
+  url    = {https://github.com/datawhalechina/Hello-Agents},
+  note   = {GitHub repository}
+}
+```
 
 ---
 
