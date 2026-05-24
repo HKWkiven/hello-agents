@@ -90,6 +90,9 @@ If you wish to read locally or contribute content, please refer to the learning 
 | [07-Environment Configuration](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra07-环境配置.md)            | Environment Configuration |
 | [08-How to Write Good Skills](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra08-如何写出好的Skill.md) | Skill writing best practices |
 | [09-Agent Development Pitfalls and Practical Lessons](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra09-Agent应用开发实践踩坑与经验分享.md) | Practical lessons and pitfalls from building a Code Agent |
+| [10-Agent Self-Evolution](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra10-Agent自进化.md) | Four closed loops of agent self-evolution and representative projects |
+| [11-Web Agent: Principles and Practice](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra11-WebAgent科普与实战.md) | Web Agent principles, anti-bot practice, and HelloAgents integration |
+| [12-Trip Planner Post-Training in Practice](https://github.com/datawhalechina/hello-agents/blob/main/Extra-Chapter/Extra12-旅行助手后训练实战.md) | Turning a trip-planner demo into a usable planner |
 
 ### PDF Version Download
 
@@ -132,7 +135,7 @@ We are an open-source community and welcome any form of contribution!
 ## 🙏 Acknowledgments
 
 ### Core Contributors
-- [Chen Sizhou - Project Lead](https://github.com/jjyaoao) (Datawhale member, full text writing and proofreading)
+- [Chen Sizhou - Project Lead](https://github.com/jjyaoao) (Datawhale member, full text writing and proofreading) <a href="https://www.xiaohongshu.com/user/profile/67b9cc34000000000e013517" target="_blank"><img alt="Static Badge" src="https://img.shields.io/badge/Rednote-小红书-e93c49"></a>
 - [Sun Tao - Co-sponsor](https://github.com/fengju0213) (Datawhale member, CAMEL-AI, Chapter 9 content and proofreading)
 - [Jiang Shufan - Co-sponsor](https://github.com/Tsumugii24) (Datawhale member, chapter exercise design and proofreading)
 - [Huang Peilin - Datawhale Prospective Member](https://github.com/HeteroCat) (Agent Development Engineer, Chapter 5 content contributor)
@@ -146,6 +149,9 @@ We are an open-source community and welcome any form of contribution!
 - [Huang Honghan - DW Contributor Team](https://github.com/XiaoMa-PM) (Shenzhen University, Extra04 Content Contributor)
 - [Wang Dapeng - Datawhale Member](https://github.com/ditingdapeng) (Senior Developer, Extra08 Content Contributor)
 - [You Yihui - Individual Developer](https://github.com/YYHDBL) (Nanjing University of Information Science and Technology, Extra09 content contribution)
+- [Yin Xin - Individual Developer](https://github.com/vinci-grape) (Zhejiang University, Extra10 content contribution)
+- [Pranav Janakiraman - Individual Developer](https://github.com/pranavjana) (TinyFish, Extra11 content contribution)
+- [Wang Yufei - Individual Developer](https://github.com/nameless0120) (Beijing University of Posts and Telecommunications, Extra12 content contribution)
 
 ### Special Thanks
 - Thanks to [@Sm1les](https://github.com/Sm1les) for help and support for this project
@@ -160,7 +166,7 @@ We are an open-source community and welcome any form of contribution!
 ## Star History
 
 <div align='center'>
-    <img src="./docs/images/star-history-2026424.png" alt="Datawhale" width="90%">
+    <img src="./docs/images/datawhalechina-hello-agents-stats-20260516.png" alt="Datawhale" width="90%">
 </div>
 
 <div align="center">
@@ -187,7 +193,7 @@ If Hello-Agents is helpful to your research or work, please cite:
 
 ```bibtex
 @misc{hello_agents2025,
-  title  = {Hello-Agents: Building an Agent from Scratch},
+  title  = {Hello-Agents: Building an AI Agent from Scratch},
   author = {Sizhou Chen and Tao Sun and Shufan Jiang and Peilin Huang and Xinmin Zeng and Xinzhong Zhu and all Hello-Agents contributors},
   year   = {2025},
   url    = {https://github.com/datawhalechina/Hello-Agents},
@@ -200,4 +206,3 @@ If Hello-Agents is helpful to your research or work, please cite:
 ## 📜 Open Source License
 
 This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
-
